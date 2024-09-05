@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="wigs, lace, attachments, nigeria's foremost hair sellers " />
+  <meta name="description" content="Hairbypeace Nigeria's 1 hair sellers " />
+  <meta name="author" content="Hairbypeace Nigeria's 1 hair sellers" />
+  <link rel="shortcut icon" href="{% static 'images/p3.png' %}" type="image/x-icon">
+
+  <title>
+    Bundles hair and wigs
+  </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+  <style>
+   .detail-box{
+               font-size:18px;
+
+           }
+#cart {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+#notification {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: opacity 0.5s;
+  opacity: 0;
+  z-index: 999;
+}
+
+#notification.show {
+  opacity: 1;
+}
+       @media only screen and (max-width: 600px) {
+           .detail-box{
+               font-size:18px;
+
+           }
+
+        }
+  </style>
+  <script>
+    let cartCount = 0;
+
+function addToCart(button) {
+
+  updateCartIcon();
+  button.textContent = '+1';
+  showNotification('Item added to cart!');
+}
+
+function updateCartIcon() {
+  const cartIcon = document.getElementById('cart-icon');
+  const cartCountSpan = document.getElementById('cart-count');
+  cartCountSpan.textContent = cartCount;
+  cartIcon.style.color = 'red';
+}
+
+function showNotification(message) {
+  const notification = document.getElementById('notification');
+  notification.textContent = message;
+  notification.classList.add('show');
+  setTimeout(() => {
+    notification.classList.remove('show');
+  }, 2000);
+}
+
+
+  </script>
+</head>
+
+<body style="  color:#333;  ">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <span>
+             HairbyPeace
+          </span>
+        </a>
+        <a href="{% url 'checkout' %}">
+         <div id="cart">
+    <span id="cart-icon"><i class="fa fa-shopping-cart" style="color:orange;" aria-hidden="true"></i></span>
+    <span id="cart-count">{{namecount}}</span>
+    <div id="notification"></div>
+  </div>
+  </a>
+
+
+        <div class="collapse navbar-collapse innerpage_navbar" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item ">
+              <a class="nav-link" href="index.html"><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="shop.html">
+
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="why.html">
+
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="testimonial.html">
+
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"></a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+    </header>
+    <!-- end header section -->
+
+  </div>
+  <!-- end hero area -->
+
+  <!-- shop section -->
+
+  <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Latest Products
+        </h2>
+      </div>
+      <div class="row">
+        {% for x in wigs %}
+        <div class="col-sm-6 col-md-4 col-lg-3" style="margin-bottom:30px;" >
+          <div class="box" style="background-color:#fff;">
+
+                 <img src="{% static 'images'|add:x.image1 %}" alt="" style="max-height:200px; width:auto; margin-bottom:50px; border-radius:30px;">
+
+              <a href="{{x.image1|slice:'-24:'}}/{{x.id}}" style="margin-left:-10px;  height:20px; width:70%; ">
+              <div ="detail-box"  style="margin-left:10px;  height:0px; width:200px; font-size:16px; margin-top:-30px;">
+                <p>
+                  {{x.item_name}}
+                </p>
+                 </a>
+
+
+
+
+               </div>
+              <div ="new">
+                <span>
+
+                </span>
+              </div>
+
+          </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+  </section>
+
+  <!-- end shop section -->
+
+  <!-- info section -->
+
+  <section class="info_section  layout_padding2-top">
+    <div class="social_container">
+      <div class="social_box">
+        <a href="">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <div class="info_container ">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              ABOUT US
+            </h6>
+            <p>
+              Hairbypeace is a luxury hairs, wigs and lace seller. we specializes to meet your expectations while catering to your style
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_form ">
+              <h5>
+                Newsletter
+              </h5>
+              <form action="#">
+                <input type="email" placeholder="Enter your email">
+                <button>
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              NEED HELP
+            </h6>
+            <p>
+              we are available to help 24/7. contact us to help you get your desired hairs and wigs
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              CONTACT US
+            </h6>
+            <div class="info_link-box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span> lekki Lagos state Nigeria  </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>+2348148060933</span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span> hairbypeace@gmail.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer section -->
+    <footer class=" footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          <a >bolaji daropale</a>
+        </p>
+      </div>
+    </footer>
+    <!-- footer section -->
+
+  </section>
+
+  <!-- end info section -->
+
+
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+
+</html>
